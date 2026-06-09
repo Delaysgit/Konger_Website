@@ -36,4 +36,4 @@ The source lives in `src/`.
 
 Generated artwork assets are stored in `src/assets/`.
 
-QA screenshots and comparison evidence are stored locally in `qa-shots/` and summarized in `design-qa.md`.
+QA screenshots and comparison evidence are stored in `qa-shots/`.
