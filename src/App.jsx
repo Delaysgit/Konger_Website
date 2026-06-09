@@ -2,116 +2,288 @@ import { useEffect, useMemo, useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
-  EnvelopeSimple,
-  InstagramLogo,
+  GlobeHemisphereEast,
+  Images,
+  LinkSimple,
   List,
+  Palette,
+  Sparkle,
   X,
 } from "@phosphor-icons/react";
-import studioHero from "./assets/studio-hero.webp";
-import hongKongNotes from "./assets/hong-kong-notes.webp";
-import botanicalStudy from "./assets/botanical-study.webp";
-import littleLibrary from "./assets/little-library.webp";
-import herbalDays from "./assets/herbal-days.webp";
-import paperShapes from "./assets/paper-shapes.webp";
-import morningTable from "./assets/morning-table.webp";
+import moonAutumnDragon from "./assets/konger/moon-autumn-dragon.webp";
+import midAutumnBridge from "./assets/konger/mid-autumn-bridge.webp";
+import jianlaiBattle from "./assets/konger/jianlai-battle.webp";
+import boboGirl01 from "./assets/konger/bobo-girl-01.webp";
+import boboGirl02 from "./assets/konger/bobo-girl-02.webp";
+import youMeHer from "./assets/konger/you-me-her.webp";
+import witchBanquet from "./assets/konger/witch-banquet.webp";
+import floatingLight from "./assets/konger/floating-light.webp";
+import quantumChoice from "./assets/konger/quantum-choice.webp";
+import cloudFeatherScroll from "./assets/konger/cloud-feather-scroll.webp";
+import newYear from "./assets/konger/new-year.webp";
+import merryChristmas from "./assets/konger/merry-christmas.webp";
+import windAnimation from "./assets/konger/wind-animation.webp";
+import flowerDay from "./assets/konger/flower-day.webp";
+import flowerFu from "./assets/konger/flower-fu.webp";
 
 const works = [
   {
-    id: "hong-kong-notes",
-    title: "Hong Kong Notes",
-    zh: "香港速写",
-    category: "Editorial",
+    id: "moon-autumn-dragon",
+    title: "月秋游龙",
+    category: "Narrative",
+    categoryZh: "文学幻想",
+    type: "2D原画 / 文创插画",
     year: "2024",
-    medium: "Watercolor, ink",
-    size: "32 x 42 cm",
-    image: hongKongNotes,
-    ratio: "tall",
-    tone: "city",
+    source: "GGAC",
+    image: moonAutumnDragon,
+    ratio: "poster",
+    tone: "vermilion",
     summary:
-      "Rain-softened streets, overhead cables, and a tram moving through a city remembered in layered washes.",
+      "红色夜幕、密林、月亮与游龙形成纵向叙事，是当前作品集中最适合建立首页记忆点的作品。",
+    notes: ["月色", "东方装饰", "纵向叙事"],
   },
   {
-    id: "botanical-study",
-    title: "Botanical Study",
-    zh: "山茶标本",
-    category: "Personal",
-    year: "2024",
-    medium: "Watercolor, graphite",
-    size: "24 x 36 cm",
-    image: botanicalStudy,
-    ratio: "tall",
-    tone: "botanical",
-    summary:
-      "A quiet field-note study where petals, stems, and margins are treated with the same patience.",
-  },
-  {
-    id: "little-library",
-    title: "The Little Library",
-    zh: "小小图书馆",
-    category: "Book",
-    year: "2023",
-    medium: "Gouache, pencil",
-    size: "Picture book spread",
-    image: littleLibrary,
+    id: "mid-autumn-bridge",
+    title: "中秋贺图",
+    category: "Character",
+    categoryZh: "角色与美宣",
+    type: "2D原画 / 游戏美宣",
+    year: "2021",
+    source: "GGAC",
+    image: midAutumnBridge,
     ratio: "wide",
-    tone: "book",
+    tone: "teal",
     summary:
-      "A tender picture-book scene about reading corners, lamplight, and the secret scale of childhood.",
+      "超宽幅水乡夜景带有完整空间层次，桥、人群、水面与月亮让画面天然适合作为桌面端横向主视觉。",
+    notes: ["节日", "场景", "宽幅构图"],
   },
   {
-    id: "herbal-days",
-    title: "Herbal Days",
-    zh: "草本日子",
-    category: "Packaging",
+    id: "jianlai-battle",
+    title: "剑来书简湖之战",
+    category: "Narrative",
+    categoryZh: "文学幻想",
+    type: "2D原画 / 文学作品",
+    year: "2025",
+    source: "GGAC",
+    image: jianlaiBattle,
+    ratio: "tall",
+    tone: "sky",
+    summary:
+      "人物、龙与高空翻转构图构成强叙事张力，适合放在文学幻想精选位。",
+    notes: ["文学作品", "动作张力", "幻想场景"],
+  },
+  {
+    id: "floating-light",
+    title: "浮光",
+    category: "Character",
+    categoryZh: "角色与美宣",
+    type: "2D原画 / 游戏美宣",
+    year: "2020",
+    source: "GGAC",
+    image: floatingLight,
+    ratio: "wide",
+    tone: "night",
+    summary:
+      "早期游戏美宣向作品，横向场景与光影组织适合放入角色与场景板块。",
+    notes: ["游戏美宣", "光影", "场景"],
+  },
+  {
+    id: "quantum-choice",
+    title: "遇事不决，量子力学",
+    category: "Character",
+    categoryZh: "角色与美宣",
+    type: "2D原画 / 游戏美宣",
+    year: "2022",
+    source: "GGAC",
+    image: quantumChoice,
+    ratio: "wide",
+    tone: "gold",
+    summary:
+      "宽幅角色作品，画面留白与叙事标题形成轻松的个人表达。",
+    notes: ["角色", "横幅", "个人题名"],
+  },
+  {
+    id: "cloud-feather-scroll",
+    title: "云羽之卷",
+    category: "Character",
+    categoryZh: "角色与美宣",
+    type: "2D原画 / 游戏角色",
     year: "2024",
-    medium: "Packaging illustration",
-    size: "Client concept",
-    image: herbalDays,
+    source: "GGAC",
+    image: cloudFeatherScroll,
+    ratio: "tall",
+    tone: "jade",
+    summary:
+      "竖版角色图，适合在作品墙中作为角色设计方向的清晰入口。",
+    notes: ["游戏角色", "竖版", "角色气质"],
+  },
+  {
+    id: "bobo-girl",
+    title: "啵啵girl",
+    category: "Illustration",
+    categoryZh: "个人插画",
+    type: "插画 / 商业插画",
+    year: "2022",
+    source: "ZCOOL",
+    image: boboGirl01,
+    ratio: "portrait",
+    tone: "soft",
+    summary:
+      "带有署名感的人像近景，适合关于页、联系区或个人风格补充。",
+    notes: ["人像", "商业插画", "个人气质"],
+  },
+  {
+    id: "bobo-girl-variant",
+    title: "啵啵girl 色彩稿",
+    category: "Illustration",
+    categoryZh: "个人插画",
+    type: "插画 / 商业插画",
+    year: "2022",
+    source: "ZCOOL",
+    image: boboGirl02,
+    ratio: "portrait",
+    tone: "soft",
+    summary:
+      "同系列人物稿，适合形成个人插画板块中的节奏变化。",
+    notes: ["系列", "少女", "色彩"],
+  },
+  {
+    id: "you-me-her",
+    title: "你我她",
+    category: "Illustration",
+    categoryZh: "个人插画",
+    type: "插画 / 商业插画",
+    year: "2022",
+    source: "ZCOOL",
+    image: youMeHer,
+    ratio: "tall",
+    tone: "cream",
+    summary:
+      "竖版人物插画，保留更轻、更近的个人观察感。",
+    notes: ["人物", "商业插画", "轻叙事"],
+  },
+  {
+    id: "witch-banquet",
+    title: "魔女嘚盛宴",
+    category: "Motion",
+    categoryZh: "动画漫画",
+    type: "2D原画 / 漫画",
+    year: "2021",
+    source: "GGAC",
+    image: witchBanquet,
+    ratio: "tall",
+    tone: "violet",
+    summary:
+      "漫画感更强的竖版作品，适合承接动画与漫画方向。",
+    notes: ["漫画", "角色群像", "戏剧性"],
+  },
+  {
+    id: "wind-animation",
+    title: "刮风",
+    category: "Motion",
+    categoryZh: "动画漫画",
+    type: "动漫 / 动画片",
+    year: "2022",
+    source: "ZCOOL",
+    image: windAnimation,
+    ratio: "wide",
+    tone: "paper",
+    summary:
+      "小动画练习的封面帧，适合提示作品不止静态插画，也包含动态练习。",
+    notes: ["动画练习", "风", "短片"],
+  },
+  {
+    id: "new-year",
+    title: "新年快乐呀",
+    category: "Character",
+    categoryZh: "角色与美宣",
+    type: "2D原画 / 游戏美宣",
+    year: "2022",
+    source: "GGAC",
+    image: newYear,
+    ratio: "wide",
+    tone: "festival",
+    summary:
+      "节庆气质明确的横向作品，可用于美宣与节日主题集合。",
+    notes: ["节庆", "横幅", "美宣"],
+  },
+  {
+    id: "merry-christmas",
+    title: "Merry Christmas",
+    category: "Character",
+    categoryZh: "角色与美宣",
+    type: "2D原画 / 游戏美宣",
+    year: "2021",
+    source: "GGAC",
+    image: merryChristmas,
+    ratio: "wide",
+    tone: "winter",
+    summary:
+      "节日主题横幅，适合与新年作品一起展现不同节令下的角色表达。",
+    notes: ["节日", "角色", "横幅"],
+  },
+  {
+    id: "flower-day",
+    title: "花开盛日，摸鱼之时",
+    category: "Illustration",
+    categoryZh: "个人插画",
+    type: "2D原画 / 游戏美宣",
+    year: "2023",
+    source: "GGAC",
+    image: flowerDay,
+    ratio: "tall",
+    tone: "garden",
+    summary:
+      "花与角色组成的竖幅作品，让个人练习与游戏美宣之间的边界更松弛。",
+    notes: ["花", "角色", "摸鱼"],
+  },
+  {
+    id: "flower-fu",
+    title: "花下嘚小福同学",
+    category: "Illustration",
+    categoryZh: "个人插画",
+    type: "2D原画 / 游戏美宣",
+    year: "2023",
+    source: "GGAC",
+    image: flowerFu,
     ratio: "square",
-    tone: "packaging",
+    tone: "garden",
     summary:
-      "Botanical packaging studies for a calm daily ritual brand, built around small leaves and paper tactility.",
-  },
-  {
-    id: "paper-shapes",
-    title: "Paper Shapes",
-    zh: "纸片肖像",
-    category: "Poster",
-    year: "2024",
-    medium: "Gouache, colored pencil",
-    size: "40 x 50 cm",
-    image: paperShapes,
-    ratio: "tall",
-    tone: "poster",
-    summary:
-      "A restrained editorial portrait that lets flat paper geometry carry the emotional contrast.",
-  },
-  {
-    id: "morning-table",
-    title: "Morning Table",
-    zh: "早晨桌面",
-    category: "Personal",
-    year: "2023",
-    medium: "Watercolor, pencil",
-    size: "30 x 38 cm",
-    image: morningTable,
-    ratio: "wide",
-    tone: "still",
-    summary:
-      "A slow tabletop composition of sketchbooks, tea, ceramics, and the first green shadows of the day.",
+      "更轻巧的角色小品，适合在作品墙中打破大幅叙事图的密度。",
+    notes: ["角色小品", "花下", "练习"],
   },
 ];
 
-const filters = ["All", "Editorial", "Book", "Poster", "Packaging", "Personal"];
+const filters = [
+  { id: "All", label: "All", zh: "全部" },
+  { id: "Narrative", label: "Narrative", zh: "文学幻想" },
+  { id: "Character", label: "Character", zh: "角色与美宣" },
+  { id: "Illustration", label: "Illustration", zh: "个人插画" },
+  { id: "Motion", label: "Motion", zh: "动画漫画" },
+];
 
-const detailNotes = {
-  city: ["雨天街道", "城市节奏", "水彩叠色"],
-  botanical: ["植物观察", "纸面留白", "铅笔标注"],
-  book: ["绘本叙事", "灯光氛围", "柔和角色"],
-  packaging: ["品牌包装", "草本纹样", "触感纸材"],
-  poster: ["人物海报", "图形切片", "克制色块"],
-  still: ["私人习作", "桌面静物", "晨光影子"],
-};
+const socials = [
+  {
+    label: "ZCOOL",
+    href: "https://www.zcool.com.cn/u/13169595",
+    icon: GlobeHemisphereEast,
+  },
+  {
+    label: "GGAC",
+    href: "https://www.ggac.com/user/83988/works",
+    icon: Images,
+  },
+  {
+    label: "Weibo",
+    href: "https://weibo.com/2612004213/profile?rightmod=1&wvr=6&mod=personinfo",
+    icon: LinkSimple,
+  },
+  {
+    label: "ArtStation",
+    href: "https://www.artstation.com/konger",
+    icon: Palette,
+  },
+];
 
 export function App() {
   const [activeFilter, setActiveFilter] = useState("All");
@@ -122,10 +294,7 @@ export function App() {
   const featuredWork = works[featuredIndex];
 
   const visibleWorks = useMemo(() => {
-    if (activeFilter === "All") {
-      return works;
-    }
-
+    if (activeFilter === "All") return works;
     return works.filter((work) => work.category === activeFilter);
   }, [activeFilter]);
 
@@ -157,9 +326,9 @@ export function App() {
   return (
     <main className="site-shell">
       <header className="topbar" aria-label="Site header">
-        <a className="brand" href="#top" aria-label="Lin Youhe home">
-          <span>LIN YOUHE</span>
-          <span>林有禾</span>
+        <a className="brand" href="#top" aria-label="KONGER home">
+          <span>KONGER</span>
+          <span>空二</span>
         </a>
 
         <nav className="desktop-nav" aria-label="Primary navigation">
@@ -167,14 +336,12 @@ export function App() {
             Work
           </a>
           <a href="#about">About</a>
-          <a href="#commission">Commission</a>
+          <a href="#sources">Sources</a>
           <a href="#contact">Contact</a>
         </nav>
 
         <div className="utility">
-          <button className="language" type="button" aria-label="Toggle language">
-            中 / EN
-          </button>
+          <span className="status-pill">Illustrator</span>
           <button
             className="icon-button mobile-menu-button"
             type="button"
@@ -195,7 +362,7 @@ export function App() {
         >
           <X size={19} weight="light" />
         </button>
-        {["Work", "About", "Commission", "Contact"].map((item) => (
+        {["Work", "About", "Sources", "Contact"].map((item) => (
           <a
             href={`#${item.toLowerCase()}`}
             key={item}
@@ -207,19 +374,40 @@ export function App() {
       </section>
 
       <section className="hero" id="top">
+        <picture className="hero-art">
+          <source media="(max-width: 720px)" srcSet={moonAutumnDragon} />
+          <img src={midAutumnBridge} alt="KONGER illustration featuring a moonlit bridge scene" />
+        </picture>
+        <div className="hero-shade" aria-hidden="true" />
         <div className="hero-copy">
-          <p className="eyebrow">Illustrator based in Hangzhou</p>
-          <h1>Lin Youhe</h1>
+          <p className="eyebrow">Illustration / Character / Narrative Art</p>
+          <h1>KONGER 空二</h1>
           <p className="intro">
-            用细腻的观察与想象，把日常中的微光，画成被记得的故事。
+            空二 KONGER 的作品在角色、幻想场景与细腻情绪之间展开。这里收录她的精选插画、游戏美宣、漫画与动画练习，作为一个安静、清晰、以作品为中心的个人画廊。
           </p>
-          <a className="line-link" href="#work">
-            <span>View selected work</span>
-            <ArrowRight size={22} weight="light" />
-          </a>
+          <div className="hero-actions">
+            <a className="line-link light" href="#work">
+              <span>View selected work</span>
+              <ArrowRight size={22} weight="light" />
+            </a>
+            <a className="line-link light muted-link" href="#about">
+              <span>About KONGER</span>
+            </a>
+          </div>
         </div>
-        <div className="hero-image-frame">
-          <img src={studioHero} alt="Lin Youhe drawing in a sunlit studio" />
+      </section>
+
+      <section className="intro-band" aria-label="Artist profile summary">
+        <div className="intro-stat">
+          <strong>27</strong>
+          <span>selected images</span>
+        </div>
+        <p>
+          空二 KONGER，站酷公开资料标注为上海插画师。公开作品覆盖 2D 原画、游戏美宣、角色、文创插画、漫画与动画短片。
+        </p>
+        <div className="intro-stat">
+          <strong>2020-2025</strong>
+          <span>selection range</span>
         </div>
       </section>
 
@@ -251,41 +439,41 @@ export function App() {
           </div>
         </div>
 
-        <div className="featured-strip">
-          <article className="featured-card">
-            <p>{featuredWork.category}</p>
+        <div className="featured-layout">
+          <button
+            className={`featured-image ${featuredWork.ratio}`}
+            type="button"
+            onClick={() => setSelectedWork(featuredWork)}
+          >
+            <img src={featuredWork.image} alt={`${featuredWork.title} illustration`} />
+          </button>
+          <article className="featured-copy">
+            <p>{featuredWork.categoryZh}</p>
             <h2>{featuredWork.title}</h2>
             <dl>
               <div>
-                <dt>Medium</dt>
-                <dd>{featuredWork.medium}</dd>
+                <dt>Type</dt>
+                <dd>{featuredWork.type}</dd>
               </div>
               <div>
                 <dt>Year</dt>
                 <dd>{featuredWork.year}</dd>
               </div>
               <div>
-                <dt>Scale</dt>
-                <dd>{featuredWork.size}</dd>
+                <dt>Source</dt>
+                <dd>{featuredWork.source}</dd>
               </div>
             </dl>
-            <button className="line-link as-button" type="button" onClick={() => setSelectedWork(featuredWork)}>
-              <span>View project</span>
+            <p className="featured-summary">{featuredWork.summary}</p>
+            <button
+              className="line-link as-button"
+              type="button"
+              onClick={() => setSelectedWork(featuredWork)}
+            >
+              <span>Open work</span>
               <ArrowRight size={22} weight="light" />
             </button>
           </article>
-
-          {works.slice(0, 4).map((work) => (
-            <button
-              className={`featured-thumb ${work.id === featuredWork.id ? "is-selected" : ""}`}
-              key={work.id}
-              type="button"
-              aria-label={`Feature ${work.title}`}
-              onClick={() => setFeaturedIndex(works.findIndex((item) => item.id === work.id))}
-            >
-              <img src={work.image} alt={`${work.title} illustration`} />
-            </button>
-          ))}
         </div>
       </section>
 
@@ -298,12 +486,13 @@ export function App() {
           <div className="filters" aria-label="Work filters">
             {filters.map((filter) => (
               <button
-                className={filter === activeFilter ? "is-active" : ""}
+                className={filter.id === activeFilter ? "is-active" : ""}
                 type="button"
-                key={filter}
-                onClick={() => setActiveFilter(filter)}
+                key={filter.id}
+                onClick={() => setActiveFilter(filter.id)}
               >
-                {filter}
+                <span>{filter.label}</span>
+                <small>{filter.zh}</small>
               </button>
             ))}
           </div>
@@ -318,7 +507,7 @@ export function App() {
               <div className="work-meta">
                 <h3>{work.title}</h3>
                 <p>
-                  {work.category}
+                  {work.categoryZh}
                   <span>{work.year}</span>
                 </p>
               </div>
@@ -330,53 +519,68 @@ export function App() {
       <section className="about" id="about">
         <div>
           <p className="eyebrow">About</p>
-          <h2>Stories gathered from quiet places.</h2>
+          <h2>Stories, characters, moonlight, and quiet narrative scenes.</h2>
         </div>
         <div className="about-copy">
           <p>
-            林有禾是一位居住在杭州的自由插画师，作品横跨出版、编辑、品牌包装与私人创作。她偏爱纸张的呼吸感、生活物件的细节，以及城市中容易被忽略的光线。
+            空二 KONGER，插画师。她的创作横跨 2D 原画、游戏美宣、角色设计、文创插画、漫画与短片练习。作品里既有宏大的幻想叙事，也有更贴近日常情绪的人物插画。
           </p>
           <p>
-            主页保持像白墙一样安静，让不同风格作品可以被统一地浏览；每个项目页再根据内容展开更鲜明的情绪、配色与叙事。
+            月光、水面、节日、书卷、游龙与城市角落共同构成画面的叙事线索。当前主页以安静的策展墙组织作品，让强叙事主图和更轻的人物小品都能被清晰观看。
           </p>
+          <div className="about-points">
+            <span>
+              <Sparkle size={16} weight="fill" />
+              2D 原画
+            </span>
+            <span>
+              <Sparkle size={16} weight="fill" />
+              游戏美宣
+            </span>
+            <span>
+              <Sparkle size={16} weight="fill" />
+              文学幻想
+            </span>
+          </div>
         </div>
       </section>
 
-      <section className="commission" id="commission">
-        <div className="commission-list">
-          <p>Available for illustration projects, collaborations, and commissions.</p>
-          <a className="line-link" href="mailto:hello@linyouhe.com">
-            <span>Let’s work together</span>
-            <ArrowRight size={22} weight="light" />
-          </a>
+      <section className="sources" id="sources">
+        <div>
+          <p className="eyebrow">Public sources</p>
+          <h2>空二KONGER</h2>
+          <p>
+            站酷公开资料标注她为上海插画师，签名提及抖音、微博、LOFTER、GGAC 均使用“空二KONGER”。GGAC公开作品列表显示 36 组作品。
+          </p>
         </div>
-        <div className="commission-items">
-          <span>Editorial illustration</span>
-          <span>Picture books</span>
-          <span>Brand packaging</span>
-          <span>Exhibition prints</span>
+        <div className="source-grid">
+          {socials.map(({ label, href, icon: Icon }) => (
+            <a href={href} target="_blank" rel="noreferrer" key={label}>
+              <Icon size={20} weight="light" />
+              <span>{label}</span>
+              <ArrowRight size={18} weight="light" />
+            </a>
+          ))}
         </div>
       </section>
 
       <footer className="footer" id="contact">
-        <div className="vase-mark" aria-hidden="true">
-          <img src={botanicalStudy} alt="" />
+        <div className="footer-mark">
+          <img src={boboGirl01} alt="" />
         </div>
         <div>
-          <p>hello@linyouhe.com</p>
+          <p>KONGER 空二</p>
           <div className="footer-links">
-            <a href="mailto:hello@linyouhe.com">
-              <EnvelopeSimple size={17} weight="light" />
-              Email
-            </a>
-            <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
-              <InstagramLogo size={17} weight="light" />
-              Instagram
-            </a>
+            {socials.slice(0, 3).map(({ label, href, icon: Icon }) => (
+              <a href={href} target="_blank" rel="noreferrer" key={label}>
+                <Icon size={17} weight="light" />
+                {label}
+              </a>
+            ))}
             <a href="#top">Back to top</a>
           </div>
         </div>
-        <p className="copyright">© 2026 Lin Youhe. All rights reserved.</p>
+        <p className="copyright">© 2026 KONGER. Portfolio draft.</p>
       </footer>
 
       {selectedWork ? (
@@ -400,26 +604,28 @@ export function App() {
             >
               <X size={19} weight="light" />
             </button>
-            <div className="project-art">
+            <div className={`project-art ${selectedWork.ratio}`}>
               <img src={selectedWork.image} alt={`${selectedWork.title} project artwork`} />
             </div>
             <div className="project-info">
-              <p className="eyebrow">{selectedWork.category} / {selectedWork.year}</p>
+              <p className="eyebrow">
+                {selectedWork.categoryZh} / {selectedWork.year}
+              </p>
               <h2 id="project-title">{selectedWork.title}</h2>
-              <p className="project-zh">{selectedWork.zh}</p>
+              <p className="project-zh">{selectedWork.type}</p>
               <p>{selectedWork.summary}</p>
               <dl>
                 <div>
-                  <dt>Medium</dt>
-                  <dd>{selectedWork.medium}</dd>
+                  <dt>Source</dt>
+                  <dd>{selectedWork.source}</dd>
                 </div>
                 <div>
-                  <dt>Scale</dt>
-                  <dd>{selectedWork.size}</dd>
+                  <dt>Category</dt>
+                  <dd>{selectedWork.category}</dd>
                 </div>
               </dl>
               <div className="project-tags">
-                {detailNotes[selectedWork.tone].map((note) => (
+                {selectedWork.notes.map((note) => (
                   <span key={note}>{note}</span>
                 ))}
               </div>
